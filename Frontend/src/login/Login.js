@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginInfo, setLoginInfo] = useState({});
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
@@ -13,8 +12,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/login", {
-        email: email,
-        password: password,
+        loginInfo,
       });
       navigate("/dashboard");
     } catch (error) {
@@ -23,18 +21,42 @@ const Login = () => {
       }
     }
   };
-  const onChange = (e) => {
-    console.log(e.target.value);
+  const onChange = (e, field) => {
+    if (field === "Email") {
+      setLoginInfo({
+        ...loginInfo,
+        Email: e.target.value,
+      });
+    }
+    if (field === "Password") {
+      setLoginInfo({
+        ...loginInfo,
+        Password: e.target.value,
+      });
+    }
   };
-
   return (
     <div className="w-[500px] bg-[grey] p-5 mx-auto mt-40">
-      <Input label="Email" placeholder="Email" onChange={onChange} />
-      <Input label="Password" placeholder="Password" onChange={onChange} />
-      <button className="bg-[blue] p-2 w-full rounded-[10px] mt-5">
+      <Input
+        label="Email"
+        placeholder="Email"
+        onChange={(e) => onChange(e, "Email")}
+      />
+      <Input
+        label="Password"
+        placeholder="Password"
+        onChange={(e) => onChange(e, "Password")}
+      />
+      <button
+        className="bg-[blue] p-2 w-full rounded-[10px] mt-5"
+        onClick={Auth}
+      >
         Login
       </button>
-      <button className="bg-[green] p-2 w-full rounded-[10px] mt-5">
+      <button
+        className="bg-[green] p-2 w-full rounded-[10px] mt-5"
+        onClick={() => navigate("/register")}
+      >
         Register
       </button>
     </div>
