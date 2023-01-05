@@ -25,13 +25,13 @@ const Login = () => {
     if (field === "Email") {
       setLoginInfo({
         ...loginInfo,
-        Email: e.target.value,
+        email: e.target.value,
       });
     }
     if (field === "Password") {
       setLoginInfo({
         ...loginInfo,
-        Password: e.target.value,
+        password: e.target.value,
       });
     }
   };
@@ -53,6 +53,9 @@ const Login = () => {
         onClick={Login}
       >
         Login
+      </button>
+      <button className="bg-[red] p-2 w-full rounded-[10px] mt-5">
+        Google Login
       </button>
       <button
         className="bg-[green] p-2 w-full rounded-[10px] mt-5"

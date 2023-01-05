@@ -49,6 +49,7 @@ const Register = () => {
   };
   return (
     <div className="w-[500px] bg-[grey] p-5 mx-auto mt-40">
+      <p className="text-center text-[blue]">{msg}</p>
       <Input
         label="Name"
         placeholder="Name"
