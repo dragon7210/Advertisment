@@ -25,29 +25,28 @@ const Register = () => {
     if (field === "Email") {
       setRegisterInfo({
         ...registerInfo,
-        Email: e.target.value,
+        email: e.target.value,
       });
     }
     if (field === "Password") {
       setRegisterInfo({
         ...registerInfo,
-        Password: e.target.value,
+        password: e.target.value,
       });
     }
     if (field === "Name") {
       setRegisterInfo({
         ...registerInfo,
-        Name: e.target.value,
+        name: e.target.value,
       });
     }
     if (field === "ConfirmPassword") {
       setRegisterInfo({
         ...registerInfo,
-        ConfirmPassword: e.target.value,
+        confPassword: e.target.value,
       });
     }
   };
-
   return (
     <div className="w-[500px] bg-[grey] p-5 mx-auto mt-40">
       <Input
@@ -58,16 +57,19 @@ const Register = () => {
       <Input
         label="Email"
         placeholder="Email"
+        type="email"
         onChange={(e) => onChange(e, "Email")}
       />
       <Input
         label="Password"
         placeholder="Password"
+        type="password"
         onChange={(e) => onChange(e, "Password")}
       />
       <Input
         label="Confirm Password"
         placeholder="Confirm Password"
+        type="password"
         onChange={(e) => onChange(e, "ConfirmPassword")}
       />
       <button

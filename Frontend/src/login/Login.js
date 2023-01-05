@@ -8,7 +8,7 @@ const Login = () => {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const Auth = async (e) => {
+  const Login = async (e) => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/login", {
@@ -45,11 +45,12 @@ const Login = () => {
       <Input
         label="Password"
         placeholder="Password"
+        type="password"
         onChange={(e) => onChange(e, "Password")}
       />
       <button
         className="bg-[blue] p-2 w-full rounded-[10px] mt-5"
-        onClick={Auth}
+        onClick={Login}
       >
         Login
       </button>
