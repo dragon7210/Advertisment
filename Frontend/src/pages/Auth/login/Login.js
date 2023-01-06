@@ -3,10 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import { baseUrl } from "../../../constant";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({});
-  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const Login = async (e) => {
@@ -21,7 +21,7 @@ const Login = () => {
       }
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
+        toast(error.response.data.msg);
       }
     }
   };

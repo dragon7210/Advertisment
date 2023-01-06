@@ -7,10 +7,13 @@ import { isLoggedin } from "./redux/auth/authSlice";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./layouts/Navbar";
 import Post from "./pages/Post";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const isLoggedIn = useSelector(isLoggedin);
   return (
     <Router>
+      <ToastContainer />
       {isLoggedIn ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<Login />} />

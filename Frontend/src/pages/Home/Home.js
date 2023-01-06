@@ -11,7 +11,7 @@ const Home = () => {
   const onSearch = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get(baseUrl + "post", {
+      const res = await axios.post(baseUrl + "post", {
         searchWord,
       });
       if (res.status === 200) {

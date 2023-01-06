@@ -3,10 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import { baseUrl } from "../../../constant";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [registerInfo, setRegisterInfo] = useState("");
-  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const Register = async (e) => {
@@ -18,7 +18,7 @@ const Register = () => {
       navigate("/");
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
+        toast(error.response.data.msg);
       }
     }
   };
