@@ -22,6 +22,7 @@ export default function Navbar() {
           </Menu>
           <li className='m-auto p-[5px] cursor-pointer' onClick={()=>{
             localStorage.setItem('token', '');
+            window.location.href = '/';
           }}>LogOut</li>
         </ul>
       </div>
