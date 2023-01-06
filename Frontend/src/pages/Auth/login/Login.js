@@ -7,13 +7,30 @@ import { baseUrl } from "../../../constant";
 import { axiosPost } from "../../../utils/httpUtil";
 import { setIsLoggedIn } from "../../../redux/auth/authSlice";
 import { ToastError } from "../../../helpers/toast.helper";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({});
-  const [msg, setMsg] = useState("");
+  const [googleInfo, setGoogleInfo] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      axios.defaults.headers[
+        "Authorization"
+      ] = `Bearer ${tokenResponse.access_token}`;
+      try {
+        const response = await axios.get(
+          "https://www.googleapis.com/oauth2/v3/userinfo"
+        );
+        setGoogleInfo(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+  console.log(googleInfo);
   const Login = async (e) => {
     e.preventDefault();
     try {
@@ -76,7 +93,12 @@ const Login = () => {
           </button>
           <div className="mt-14 flex justify-center">
             <p className="mr-[40px]">Or login with</p>
-            <button className="bg-[red] rounded-[5px] px-[6px]">
+            <button
+              className="bg-[red] rounded-[5px] px-[6px]"
+              onClick={() => {
+                googleLogin();
+              }}
+            >
               <p className="text-[white]">G</p>
             </button>
           </div>

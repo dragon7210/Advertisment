@@ -9,7 +9,6 @@ import { ToastError } from "../../../helpers/toast.helper";
 
 const Register = () => {
   const [registerInfo, setRegisterInfo] = useState("");
-  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const Register = async (e) => {

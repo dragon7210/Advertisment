@@ -17,6 +17,7 @@ function App() {
   const isLoggedIn = useSelector(isLoggedin);
   return (
     <Router>
+      <ToastContainer />
       {isLoggedIn ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={isLoggedIn ? <Home /> : <Login />} />
