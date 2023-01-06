@@ -15,6 +15,14 @@ export const getUsers = async (req, res) => {
 
 export const Register = async (req, res) => {
   const { name, email, password, confPassword } = req.body.registerInfo;
+  const user = await Users.findAll({
+    where: {
+      email: email,
+    },
+  });
+  if (user.length > 0) {
+    return res.json({ msg: "Email exists already" });    
+  }
   if (password !== confPassword)
     return res
       .status(400)
@@ -29,28 +37,30 @@ export const Register = async (req, res) => {
     });
     res.json({ msg: "Registration Successful" });
   } catch (error) {
+    res.json({ msg: "Interval Server Error" });
     console.log(error);
   }
 };
 
 export const Login = async (req, res) => {
+  const { email: req_mail, password: req_password } = req.body.loginInfo;
   try {
     const user = await Users.findAll({
       where: {
-        email: req.body.loginInfo.email,
+        email: req_mail,
       },
     });
-    const match = await bcrypt.compare(
-      req.body.loginInfo.password,
-      user[0].password
-    );
+    const match = await bcrypt.compare(req_password, user[0].password);
     if (!match) return res.status(400).json({ msg: "Wrong Password" });
     const userId = user[0].id;
     const name = user[0].name;
     const email = user[0].email;
     const accessToken = jwt.sign(
       { userId, name, email },
-      process.env.ACCESS_TOKEN_SECRET
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "10h",
+      }
     );
     const refreshToken = jwt.sign(
       { userId, name, email },

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Input from "../components/Input";
+import Input from "../../../components/Input";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({});
@@ -11,10 +11,14 @@ const Login = () => {
   const Login = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/login", {
+      const res = await axios.post("http://localhost:5000/api/login", {
         loginInfo,
       });
-      navigate("/dashboard");
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data.accessToken)
+        navigate("/home");
+      }
+
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
