@@ -34,17 +34,16 @@ const Login = () => {
   const Login = async (e) => {
     e.preventDefault();
     try {
-      const res = await axiosPost(baseUrl, '/auth/login', {loginInfo})
+      const res = await axiosPost(baseUrl, "/auth/login", { loginInfo });
       if (res.status === 200) {
         localStorage.setItem("token", res.data.accessToken);
-        window.location.href = '/home';
+        window.location.href = "/home";
       }
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
-        ToastError(error.response.data.msg)
+        ToastError(error.response.data.msg);
       } else {
-        ToastError("Server Error")
+        ToastError("Server Error");
       }
     }
   };
