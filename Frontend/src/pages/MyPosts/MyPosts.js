@@ -45,13 +45,13 @@ export default function MyPosts() {
               <td className=" text-center">{post.pay}</td>
               <td className=" text-center">
                 <button
-                  className="hover:bg-[grey] rounded-sm p-2"
+                  className="rounded-sm p-2"
                   onClick={() => onEdit(index)}
                 >
                   <img className="w-[30px]" src="icon/edit.png" alt="edit" />
                 </button>
                 <button
-                  className="ml-[20px] hover:bg-[red] rounded-sm p-2"
+                  className="ml-[20px] rounded-sm p-2"
                   onClick={() => onDelete(index)}
                 >
                   <img
