@@ -51,4 +51,15 @@ export const postUpdate = async (req, res) => {
   } catch (error) {
     res.json({ msg: "Interval Server Error" });
   }
-};
+}
+
+export const searchPost = async (req, res) => {
+  console.log(req.query);
+  res.send('ddd')
+  try {
+
+  } catch (error) {
+    res.json({ msg: "Interval Server Error" })
+  }
+}
+

@@ -37,7 +37,7 @@ const Login = () => {
       }
     } catch (error) {
       if (error.response) {
-        ToastError(error.response.data.msg);
+        ToastError(error.response.data.msg)
       } else {
         ToastError("Server Error");
       }

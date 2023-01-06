@@ -6,7 +6,7 @@ const Input = ({ placeholder, onChange, type, value }) => {
         placeholder={placeholder}
         onChange={onChange}
         type={type}
-        value={value}
+        value={value}        
       />
     </div>
   );
