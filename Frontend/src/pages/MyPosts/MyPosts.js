@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { axiosGet } from "../../utils/httpUtil";
 import { baseUrl } from "../../constant";
 import EditModal from "../../components/EditModal";
+import DelModal from "../../components/DelModal";
 
 export default function MyPosts() {
   const [myPosts, setMyPosts] = useState([]);
   const [selEdit, setSelEdit] = useState(-1);
-  const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selDel, setSelDel] = useState(-1);
+  const [openDelModal, setOpenDelModal] = useState(false);
 
   const getPost = async () => {
     let res = await axiosGet(baseUrl, "/post");
@@ -17,7 +20,11 @@ export default function MyPosts() {
   }, []);
   const onEdit = (i) => {
     setSelEdit(i);
-    setOpenModal(true);
+    setOpenEditModal(true);
+  };
+  const onDelete = (i) => {
+    setSelDel(i);
+    setOpenDelModal(true);
   };
   return (
     <div className="pt-10">
@@ -43,7 +50,10 @@ export default function MyPosts() {
                 >
                   <img className="w-[30px]" src="icon/edit.png" alt="edit" />
                 </button>
-                <button className="ml-[20px] hover:bg-[red] rounded-sm p-2">
+                <button
+                  className="ml-[20px] hover:bg-[red] rounded-sm p-2"
+                  onClick={() => onDelete(index)}
+                >
                   <img
                     className="h-[30px] "
                     src="icon/delete.png"
@@ -56,9 +66,14 @@ export default function MyPosts() {
         </tbody>
       </table>
       <EditModal
-        openModal={openModal}
-        onClose={() => setOpenModal(false)}
+        openModal={openEditModal}
+        onClose={() => setOpenEditModal(false)}
         editPost={myPosts[selEdit]}
+      />
+      <DelModal
+        openModal={openDelModal}
+        onClose={() => setOpenDelModal(false)}
+        selDel={selDel}
       />
     </div>
   );
