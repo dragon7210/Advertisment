@@ -1,38 +1,35 @@
-import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import UserBoard from "./components/UserBoard";
+import { useSelector } from "react-redux";
 import Login from "./pages/Auth/login";
-// import Navbar from "./components/Navbar";
 import Register from "./pages/Auth/register";
 import Home from "./pages/Home";
-import Protected from "./components/ProtectedRoute";
 import { isLoggedin } from "./redux/auth/authSlice";
-import Navbar from './components/Navbar/Navbar';
+import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from "./layouts/Navbar";
+import Post from "./pages/Post";
 function App() {
-  const isLoggedIn = useSelector(isLoggedin)
-  useEffect(() => {
-  }, [])
+  const isLoggedIn = useSelector(isLoggedin);
   return (
     <Router>
-      {isLoggedIn?<Navbar />:null}
+      {isLoggedIn ? <Navbar /> : null}
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/usersboard" element={
-          <Protected isLoggedIn={isLoggedIn}>
-            <UserBoard />
-          </Protected>}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Home />
+            </ProtectedRoute>
+          }
         />
-        <Route path="/home" element={
-          <Protected isLoggedIn={isLoggedIn}>
-            <Home />
-          </Protected>}
-        />
-        <Route path="/" element={
-          <Protected isLoggedIn={isLoggedIn}>
-            <Home />
-          </Protected>}
+        <Route
+          path="/post"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Post />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </Router>
