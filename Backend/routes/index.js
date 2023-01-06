@@ -1,6 +1,6 @@
 import express from "express";
 import { getUsers, Register, Login, Logout } from "../controllers/Users.js";
-import { postSave, postGet, postGetById, searchPost } from "../controllers/Post.js";
+import { postSave, postGet, postGetById, searchPost } from "../controllers/Posts.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 
