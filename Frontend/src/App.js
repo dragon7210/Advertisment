@@ -9,10 +9,8 @@ import Home from "./pages/Home";
 import Protected from "./components/ProtectedRoute";
 import { isLoggedin } from "./redux/auth/authSlice";
 import Navbar from './components/Navbar/Navbar';
-
 function App() {
   const isLoggedIn = useSelector(isLoggedin)
-  // console.log(isLoggedIn)
   useEffect(() => {
   }, [])
   return (
