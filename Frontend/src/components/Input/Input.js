@@ -6,11 +6,7 @@ const Input = ({ placeholder, onChange, type, value }) => {
         placeholder={placeholder}
         onChange={onChange}
         type={type}
-<<<<<<< HEAD
         value={value}        
-=======
-        value={value}
->>>>>>> 31d862c62e97d603b74fb527d97fd1feea878d1d
       />
     </div>
   );

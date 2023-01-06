@@ -54,7 +54,6 @@ export const postUpdate = async (req, res) => {
   } catch (error) {
     res.json({ msg: "Interval Server Error" });
   }
-<<<<<<< HEAD:Backend/controllers/Post.js
 }
 
 export const searchPost = async (req, res) => {
@@ -67,6 +66,3 @@ export const searchPost = async (req, res) => {
   }
 }
 
-=======
-};
->>>>>>> 31d862c62e97d603b74fb527d97fd1feea878d1d:Backend/controllers/Posts.js

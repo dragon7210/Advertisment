@@ -37,11 +37,7 @@ const Login = () => {
       }
     } catch (error) {
       if (error.response) {
-<<<<<<< HEAD
         ToastError(error.response.data.msg)
-=======
-        ToastError(error.response.data.msg);
->>>>>>> 31d862c62e97d603b74fb527d97fd1feea878d1d
       } else {
         ToastError("Server Error");
       }
