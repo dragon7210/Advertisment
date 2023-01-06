@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import Input from "../../../components/Input";
 import { baseUrl } from "../../../constant";
 import { axiosPost } from "../../../utils/httpUtil";
-import { setIsLoggedIn } from "../../../redux/auth/authSlice";
 import { ToastError } from "../../../helpers/toast.helper";
 import { useGoogleLogin } from "@react-oauth/google";
 
@@ -13,7 +11,6 @@ const Login = () => {
   const [loginInfo, setLoginInfo] = useState({});
   const [googleInfo, setGoogleInfo] = useState({});
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -30,7 +27,6 @@ const Login = () => {
       }
     },
   });
-  console.log(googleInfo);
   const Login = async (e) => {
     e.preventDefault();
     try {

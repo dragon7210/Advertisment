@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import { baseUrl } from "../../../constant";
@@ -16,7 +15,6 @@ const Register = () => {
       await axiosPost(baseUrl, "/auth/register", {
         registerInfo,
       });
-      // navigate("/");
       window.location.href = "/";
     } catch (error) {
       if (error.response) {
