@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
+import { baseUrl } from "../../../constant";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({});
@@ -11,7 +12,7 @@ const Login = () => {
   const Login = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", {
+      const res = await axios.post(baseUrl + "auth/login", {
         loginInfo,
       });
       if (res.status === 200) {
