@@ -1,27 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Input from "../../../components/Input";
 import { baseUrl } from "../../../constant";
+import { axiosPost } from "../../../utils/httpUtil";
+import { setIsLoggedIn } from "../../../redux/auth/authSlice";
+import { ToastError } from "../../../helpers/toast.helper";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({});
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const Login = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(baseUrl + "auth/login", {
-        loginInfo,
-      });
+      const res = await axiosPost(baseUrl, '/auth/login', {loginInfo})
       if (res.status === 200) {
         localStorage.setItem("token", res.data.accessToken);
-        window.location.href = "/home";
+        window.location.href = '/home';
       }
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
+        ToastError(error.response.data.msg)
+      } else {
+        ToastError("Server Error")
       }
     }
   };
