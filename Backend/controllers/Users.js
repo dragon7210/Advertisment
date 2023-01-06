@@ -64,7 +64,10 @@ export const Login = async (req, res) => {
     );
     const refreshToken = jwt.sign(
       { userId, name, email },
-      process.env.REFRESH_TOKEN_SECRET
+      process.env.REFRESH_TOKEN_SECRET,
+      {
+        expiresIn: "1d",
+      }
     );
     await Users.update(
       { refresh_token: refreshToken },
@@ -78,6 +81,7 @@ export const Login = async (req, res) => {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
+    res.json({ accessToken });
   } catch (error) {
     res.status(404).json({ msg: "Email not found" });
   }
