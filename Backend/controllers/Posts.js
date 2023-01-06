@@ -24,13 +24,10 @@ export const postSave = async (req, res) => {
 };
 export const postGet = async (req, res) => {
   try {
-    let res = await Posts.findAll({
+    let posts = await Posts.findAll({
       user_id: req.userId,
     });
-    console.log(res);
-    res.send({
-      data: "ddd",
-    });
+    res.json(posts);
   } catch (error) {
     res.json({ msg: "Interval Server Error" });
   }
