@@ -5,17 +5,17 @@ import axios from "axios";
 
 const Post = () => {
   const [postInfo, setPostInfo] = useState({});
-  const onChange = (e, filed) => {
-    if (filed === "Title") {
+  const onChange = (e, field) => {
+    if (field === "Title") {
       setPostInfo({
         ...postInfo,
         title: e.target.value,
       });
     }
-    if (filed === "Content") {
+    if (field === "Content") {
       setPostInfo({
         ...postInfo,
-        title: e.target.value,
+        content: e.target.value,
       });
     }
   };
@@ -36,11 +36,27 @@ const Post = () => {
       }
     }
   };
-  const onCancel = () => {};
-
+  const onCancel = () => {
+    setPostInfo({});
+  };
+  const select = (e) => {
+    setPostInfo({
+      ...postInfo,
+      type: e.target.value,
+    });
+  };
   return (
     <div>
-      <div className="w-[500px] mx-auto">
+      <div className="w-[500px] mx-auto pt-6">
+        <label>Choose a type</label>
+        <select
+          id="countries"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-2"
+          onChange={select}
+        >
+          <option value="free">Free</option>
+          <option value="paid">Paid</option>
+        </select>
         <Input placeholder="Title" onChange={(e) => onChange(e, "Title")} />
         <textarea
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-[20px] h-24"
