@@ -41,7 +41,6 @@ const Login = () => {
       }
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
         ToastError(error.response.data.msg)
       } else {
         ToastError("Server Error")

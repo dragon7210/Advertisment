@@ -46,14 +46,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/*"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Redirect/>
             </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
       <ToastContainer/>
     </Router>

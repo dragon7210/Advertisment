@@ -1,6 +1,6 @@
 import express from "express";
 import { getUsers, Register, Login, Logout } from "../controllers/Users.js";
-import { postSave, postGet, postGetById } from "../controllers/Post.js";
+import { postSave, postGet, postGetById, searchPost } from "../controllers/Post.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 
@@ -14,5 +14,6 @@ router.delete("/logout", Logout);
 router.post("/post",verifyToken, postSave);
 router.get("/post",verifyToken, postGet);
 router.get("/post/:id",verifyToken, postGetById);
+router.get("/search", verifyToken, searchPost )
 
 export default router;
