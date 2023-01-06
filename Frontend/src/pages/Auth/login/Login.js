@@ -16,7 +16,7 @@ const Login = () => {
       });
       if (res.status === 200) {
         localStorage.setItem('token', res.data.accessToken)
-        navigate("/home");
+        window.location.href= "/home";
       }
 
     } catch (error) {
