@@ -6,7 +6,6 @@ const Home = () => {
   const onChange = (e) => {
     setSearchWord(e.target.value);
   };
-  console.log(searchWord);
   return (
     <div>
       <div className="w-[400px] mx-auto mt-[10vh] flex">

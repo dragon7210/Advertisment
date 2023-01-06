@@ -11,14 +11,13 @@ const Login = () => {
   const Login = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/login", {
+      const res = await axios.post("http://localhost:5000/auth/login", {
         loginInfo,
       });
       if (res.status === 200) {
-        localStorage.setItem('token', res.data.accessToken)
-        window.location.href= "/home";
+        localStorage.setItem("token", res.data.accessToken);
+        window.location.href = "/home";
       }
-
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
