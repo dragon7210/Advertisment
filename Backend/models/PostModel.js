@@ -3,8 +3,8 @@ import db from "../config/Database";
 
 const { DataTypes } = Sequelize;
 
-const Post = db.define(
-  "Post",
+const Posts = db.define(
+  "Posts",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -15,25 +15,25 @@ const Post = db.define(
       type: DataTypes.INTEGER,
     },
     title: {
-      type: DataTypes.TEXT('medium'),
+      type: DataTypes.TEXT("medium"),
     },
     content: {
-      type: DataTypes.TEXT('long'),
+      type: DataTypes.TEXT("long"),
     },
     pay: {
       type: DataTypes.INTEGER,
     },
     created_at: {
-      type: 'TIMESTAMP',
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      allowNull: false
+      type: "TIMESTAMP",
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+      allowNull: false,
     },
     updated_at: {
-      type: 'TIMESTAMP',
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      type: "TIMESTAMP",
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       allowNull: false,
       onUpdate: true,
-    }
+    },
   },
   {
     freezeTableName: true,
@@ -44,4 +44,4 @@ const Post = db.define(
   await db.sync();
 })();
 
-export default Post;
+export default Posts;

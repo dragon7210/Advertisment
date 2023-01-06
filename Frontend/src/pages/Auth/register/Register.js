@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import { baseUrl } from "../../../constant";
 import { axiosPost } from "../../../utils/httpUtil";
 import { ToastError } from "../../../helpers/toast.helper";
-
 
 const Register = () => {
   const [registerInfo, setRegisterInfo] = useState("");
@@ -14,17 +12,15 @@ const Register = () => {
   const Register = async (e) => {
     e.preventDefault();
     try {
-      await axiosPost(baseUrl, '/auth/register', {
+      await axiosPost(baseUrl, "/auth/register", {
         registerInfo,
-      })
-      // navigate("/");
-      window.location.href = '/';
+      });
+      window.location.href = "/";
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
-        ToastError(error.response.data.msg)
+        ToastError(error.response.data.msg);
       } else {
-        ToastError("Server Error")
+        ToastError("Server Error");
       }
     }
   };
