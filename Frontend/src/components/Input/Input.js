@@ -1,4 +1,4 @@
-const Input = ({ placeholder, onChange, type }) => {
+const Input = ({ placeholder, onChange, type, value }) => {
   return (
     <div className="flex w-full mt-8">
       <input
@@ -6,6 +6,7 @@ const Input = ({ placeholder, onChange, type }) => {
         placeholder={placeholder}
         onChange={onChange}
         type={type}
+        value={value}
       />
     </div>
   );

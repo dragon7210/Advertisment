@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
 import { baseUrl } from "../../constant";
-import { ToastError, ToastInfo, ToastSuccess } from "../../helpers/toast.helper";
+import {
+  ToastError,
+  ToastInfo,
+  ToastSuccess,
+} from "../../helpers/toast.helper";
 import { axiosPost } from "../../utils/httpUtil";
 
 const Post = () => {
   const [postInfo, setPostInfo] = useState({});
-  const navigate = useNavigate();
   const onChange = (e, field) => {
     if (field === "Title") {
       setPostInfo({
@@ -22,30 +24,28 @@ const Post = () => {
       });
     }
   };
-  const [msg, setMsg] = useState("");
   const onPost = async (e) => {
     e.preventDefault();
-    if (postInfo.title === undefined || postInfo.title === '') {
-      ToastInfo('Title or content is empty');
+    if (postInfo.title === undefined || postInfo.title === "") {
+      ToastInfo("Title or content is empty");
       return;
     }
-    if (postInfo.content === undefined || postInfo.content === '') {
-      ToastInfo('Title or content is empty');
+    if (postInfo.content === undefined || postInfo.content === "") {
+      ToastInfo("Title or content is empty");
       return;
     }
     try {
-      const res = await axiosPost(baseUrl, '/post', {
+      const res = await axiosPost(baseUrl, "/post", {
         postInfo,
-      })
+      });
       if (res.status === 200) {
-        ToastSuccess('success')
+        ToastSuccess("success");
       }
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
-        ToastError(error.response.data.msg)
+        ToastError(error.response.data.msg);
       } else {
-        ToastError("Server Error")
+        ToastError("Server Error");
       }
     }
   };
@@ -63,7 +63,6 @@ const Post = () => {
       <div className="w-[500px] mx-auto pt-6">
         <label>Choose a type</label>
         <select
-          id="countries"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-2"
           onChange={select}
         >
