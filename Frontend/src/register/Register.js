@@ -48,43 +48,43 @@ const Register = () => {
     }
   };
   return (
-    <div className="w-[500px] bg-[grey] p-5 mx-auto mt-40">
-      <p className="text-center text-[blue]">{msg}</p>
-      <Input
-        label="Name"
-        placeholder="Name"
-        onChange={(e) => onChange(e, "Name")}
-      />
-      <Input
-        label="Email"
-        placeholder="Email"
-        type="email"
-        onChange={(e) => onChange(e, "Email")}
-      />
-      <Input
-        label="Password"
-        placeholder="Password"
-        type="password"
-        onChange={(e) => onChange(e, "Password")}
-      />
-      <Input
-        label="Confirm Password"
-        placeholder="Confirm Password"
-        type="password"
-        onChange={(e) => onChange(e, "ConfirmPassword")}
-      />
-      <button
-        className="bg-[green] p-2 w-full rounded-[10px] mt-5"
-        onClick={Register}
-      >
-        Register
-      </button>
-      <button
-        className="bg-[blue] p-2 w-full rounded-[10px] mt-5"
-        onClick={() => navigate("/")}
-      >
-        Back
-      </button>
+    <div className="bg-[#f8f8f8] h-[100vh] pt-40">
+      <div className="w-[800px] bg-[white] p-10 mx-auto rounded-[20px] flex">
+        <div className="w-[50%]">
+          <p className="text-center text-[40px] font-bold">Sing Up</p>
+          <Input placeholder="Name" onChange={(e) => onChange(e, "Name")} />
+          <Input placeholder="Email" onChange={(e) => onChange(e, "Email")} />
+          <Input
+            placeholder="Password"
+            type="password"
+            onChange={(e) => onChange(e, "Password")}
+          />
+          <Input
+            placeholder="Confirm Password"
+            type="password"
+            onChange={(e) => onChange(e, "ConfirmPassword")}
+          />
+          <button
+            className="bg-[#6dabe4] p-2 w-full rounded-[10px] mt-8 hover:bg-[blue]"
+            onClick={Register}
+          >
+            <p className="text-[white]">Register</p>
+          </button>
+        </div>
+        <div className="w-[50%] my-auto">
+          <img
+            src={`https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg`}
+            alt="Sign Up"
+            className="ml-[50px] mt-10"
+          />
+          <p
+            className="cursor-pointer text-center mt-10"
+            onClick={() => navigate("/")}
+          >
+            I am already member
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
