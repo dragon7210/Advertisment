@@ -30,21 +30,21 @@ export default function MyPosts() {
     let temp = [...myPosts];
     temp.splice(selDel, 1);
     setMyPosts(temp);
-  }
+  };
   return (
     <div className="pt-10">
-      <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
-        <thead>
-          <tr className="text-left border-b border-gray-300">
-            <th className="px-4 py-3">No</th>
-            <th className="px-4 py-3">Title</th>
-            <th className="px-4 py-3">Type</th>
-            <th className="px-4 py-3">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            myPosts.map((post, index) => (
+      {myPosts.length && (
+        <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
+          <thead>
+            <tr className="text-left border-b border-gray-300">
+              <th className="px-4 py-3">No</th>
+              <th className="px-4 py-3">Title</th>
+              <th className="px-4 py-3">Type</th>
+              <th className="px-4 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {myPosts.map((post, index) => (
               <tr key={index} className="bg-gray-700 border-b border-gray-600">
                 <td className="px-4 py-3">{index + 1}</td>
                 <td className="px-4 py-3">{post.title.slice(0, 80)}</td>
@@ -68,28 +68,27 @@ export default function MyPosts() {
                   </button>
                 </td>
               </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      {openEditModal ?
+            ))}
+          </tbody>
+        </table>
+      )}
+      {openEditModal ? (
         <EditModal
           openModal={openEditModal}
           onClose={() => setOpenEditModal(false)}
           data={myPosts[selEdit]}
           fetchPosts={getPost}
-        /> : null
-      }
-      {openDelModal ?
+        />
+      ) : null}
+      {openDelModal ? (
         <DelModal
           openModal={openDelModal}
           onClose={() => setOpenDelModal(false)}
           selDel={selDel}
           afterDel={afterDelFunc}
           data={myPosts[selDel].id}
-        /> : null
-      }
-
+        />
+      ) : null}
     </div>
   );
 }
