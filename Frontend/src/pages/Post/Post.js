@@ -7,9 +7,12 @@ import {
   ToastSuccess,
 } from "../../helpers/toast.helper";
 import { axiosPost } from "../../utils/httpUtil";
+import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   const [postInfo, setPostInfo] = useState({});
+  const navigate = useNavigate();
+
   const onChange = (e, field) => {
     if (field === "Title") {
       setPostInfo({
@@ -40,6 +43,7 @@ const Post = () => {
       });
       if (res.status === 200) {
         ToastSuccess("success");
+        navigate('/myposts')
       }
     } catch (error) {
       if (error.response) {
