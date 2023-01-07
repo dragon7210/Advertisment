@@ -33,35 +33,35 @@ export default function MyPosts() {
   };
   return (
     <div className="pt-10">
-      {myPosts.length && (
+      {myPosts.length!=0 && (
         <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
           <thead>
             <tr className="text-left border-b border-gray-300">
-              <th className="px-4 py-3">No</th>
-              <th className="px-4 py-3">Title</th>
-              <th className="px-4 py-3">Type</th>
-              <th className="px-4 py-3">Action</th>
+              <th className="p-2 sm:px-4 sm:py-3">No</th>
+              <th className="p-2 sm:px-4 sm:py-3 w-[50%]">Title</th>
+              <th className="p-2 sm:px-4 sm:py-3">Type</th>
+              <th className="p-2 sm:px-4 sm:py-3">Action</th>
             </tr>
           </thead>
           <tbody>
             {myPosts.map((post, index) => (
               <tr key={index} className="bg-gray-700 border-b border-gray-600">
-                <td className="px-4 py-3">{index + 1}</td>
-                <td className="px-4 py-3">{post.title.slice(0, 80)}</td>
-                <td className="px-4 py-3">{post.pay}</td>
-                <td className="px-4 py-3">
+                <td className="p-2 sm:px-4 sm:py-3">{index + 1}</td>
+                <td className="p-2 sm:px-4 sm:py-3">{post.title.slice(0, 40)}</td>
+                <td className="p-2 sm:px-4 sm:py-3">{post.pay}</td>
+                <td className="p-2 sm:px-4 sm:py-3">
                   <button
                     className="rounded-sm p-2"
                     onClick={() => onEdit(index)}
                   >
-                    <img className="w-[20px]" src="icon/edit.png" alt="edit" />
+                    <img className="w-[15px] sm:w-[20px]" src="icon/edit.png" alt="edit" />
                   </button>
                   <button
-                    className="ml-[20px] rounded-sm p-2"
+                    className="sm:ml-[20px] rounded-sm p-2"
                     onClick={() => onDelete(index)}
                   >
                     <img
-                      className="h-[20px] "
+                      className="h-[15px] sm:h-[20px] "
                       src="icon/delete.png"
                       alt="delete"
                     />

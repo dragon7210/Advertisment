@@ -6,14 +6,17 @@ import { axiosPut } from "../../utils/httpUtil";
 import { baseUrl } from "../../constant";
 
 const customStyles = {
+  overlay: {
+    position:'absolute',
+    backgroundColor: 'rgba(0, 0, 0, 0.55)'
+  },
   content: {
-    top: "50%",
+    top: "10%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    width: "500px",
-    transform: "translate(-50%, -50%)",
+    transform: "translate(-50%)",
   },
 };
 
@@ -82,7 +85,7 @@ const EditModal = ({ openModal, onClose, data, fetchPosts }) => {
     })
   }, [])
   return (
-    <Modal isOpen={openModal} ariaHideApp={false} style={customStyles}>
+    <Modal className="w-[250px] sm:w-[400px] absolute  bg-white p-[10px]" isOpen={openModal} ariaHideApp={false} style={customStyles}>
       <select
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-2"
         onChange={select}

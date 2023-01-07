@@ -59,7 +59,7 @@ const Login = () => {
   };
   return (
     <div className="bg-[#f8f8f8] h-[100vh] pt-40">
-      <div className="w-[800px] bg-[white] p-10 mx-auto rounded-[20px] flex">
+      <div className="w-[300px] md:w-[600px] bg-[white] p-4 md:p-10 mx-auto rounded-[20px] flex">
         <div className="w-[50%]">
           <img
             src={`https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg`}
@@ -73,7 +73,7 @@ const Login = () => {
           </p>
         </div>
         <div className="w-[50%]">
-          <p className="text-center text-[40px] font-bold">Sing In</p>
+          <p className="text-center text-[24px] md:text-[40px] font-bold">Sign In</p>
           <Input placeholder="Email" onChange={(e) => onChange(e, "Email")} />
           <Input
             placeholder="Password"
@@ -81,13 +81,13 @@ const Login = () => {
             onChange={(e) => onChange(e, "Password")}
           />
           <button
-            className="bg-[#6dabe4] p-2 w-full rounded-[10px] mt-16 hover:bg-[blue]"
+            className="bg-[#6dabe4] p-2 w-full rounded-[10px] mt-4 sm:mt-16 hover:bg-[blue]"
             onClick={Login}
           >
             <p className="text-[white]">Login</p>
           </button>
-          <div className="mt-14 flex justify-center">
-            <p className="mr-[40px]">Or login with</p>
+          <div className="mt-4 sm:mt-14 flex justify-center">
+            <p className="md:mr-[40px]">Or login with</p>
             <button
               className="bg-[red] rounded-[5px] px-[6px]"
               onClick={() => {

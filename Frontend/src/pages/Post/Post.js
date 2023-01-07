@@ -64,7 +64,7 @@ const Post = () => {
   };
   return (
     <div>
-      <div className="w-[500px] mx-auto pt-6">
+      <div className="w-[90%] sm:w-[500px] mx-auto pt-6">
         <label>Choose a type</label>
         <select
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-2"
