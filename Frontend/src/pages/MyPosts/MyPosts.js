@@ -33,7 +33,7 @@ export default function MyPosts() {
   };
   return (
     <div className="pt-10">
-      {myPosts.length && (
+      {myPosts.length ? (
         <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
           <thead>
             <tr className="text-left border-b border-gray-300">
@@ -71,6 +71,8 @@ export default function MyPosts() {
             ))}
           </tbody>
         </table>
+      ) : (
+        ""
       )}
       {openEditModal ? (
         <EditModal

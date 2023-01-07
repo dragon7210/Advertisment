@@ -58,7 +58,7 @@ const Home = () => {
         </button>
       </div>
       <div className="w-[80%] mx-auto mt-[10vh] flex">
-        {postList.length && (
+        {postList.length ? (
           <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
             <thead>
               <tr className="text-left border-b border-gray-300">
@@ -92,6 +92,8 @@ const Home = () => {
               })}
             </tbody>
           </table>
+        ) : (
+          ""
         )}
       </div>
     </div>
