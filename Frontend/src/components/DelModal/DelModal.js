@@ -1,4 +1,7 @@
 import Modal from "react-modal";
+import { axiosDestroy } from "../../utils/httpUtil";
+import { ToastError, ToastSuccess, ToastInfo } from "../../helpers/toast.helper";
+import { baseUrl } from "../../constant";
 
 const customStyles = {
   content: {
@@ -12,12 +15,25 @@ const customStyles = {
   },
 };
 
-const DelModal = ({ openModal, onClose, selDel }) => {
+const DelModal = ({ openModal, onClose, selDel, data, afterDel }) => {
   const closeModal = () => {
     onClose();
   };
-  const onDelete = () => {
-    onClose();
+  const onDelete = async () => {
+    try {
+      const res = await axiosDestroy(baseUrl, "/post/" + data);
+      if (res.status === 200) {
+        ToastSuccess("success");
+        onClose();
+        afterDel(selDel);
+      }
+    } catch (error) {
+      if (error.response) {
+        ToastError(error.response.data.msg);
+      } else {
+        ToastError("Server Error");
+      }
+    }
   };
   return (
     <Modal isOpen={openModal} ariaHideApp={false} style={customStyles}>

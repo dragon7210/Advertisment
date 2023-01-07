@@ -26,55 +26,70 @@ export default function MyPosts() {
     setSelDel(i);
     setOpenDelModal(true);
   };
+  const afterDelFunc = (selDel) => {
+    let temp = [...myPosts];
+    temp.splice(selDel, 1);
+    setMyPosts(temp);
+  }
   return (
     <div className="pt-10">
-      <table className="table-auto w-[50%] mx-auto rounded-[20px]">
+      <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
         <thead>
-          <tr className="bg-[grey] h-[60px]">
-            <th>No</th>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Action</th>
+          <tr className="text-left border-b border-gray-300">
+            <th className="px-4 py-3">No</th>
+            <th className="px-4 py-3">Title</th>
+            <th className="px-4 py-3">Type</th>
+            <th className="px-4 py-3">Action</th>
           </tr>
         </thead>
         <tbody>
-          {myPosts.map((post, index) => (
-            <tr key={index}>
-              <td className=" text-center">{index + 1}</td>
-              <td className=" text-center">{post.title}</td>
-              <td className=" text-center">{post.pay}</td>
-              <td className=" text-center">
-                <button
-                  className="hover:bg-[grey] rounded-sm p-2"
-                  onClick={() => onEdit(index)}
-                >
-                  <img className="w-[30px]" src="icon/edit.png" alt="edit" />
-                </button>
-                <button
-                  className="ml-[20px] hover:bg-[red] rounded-sm p-2"
-                  onClick={() => onDelete(index)}
-                >
-                  <img
-                    className="h-[30px] "
-                    src="icon/delete.png"
-                    alt="delete"
-                  />
-                </button>
-              </td>
-            </tr>
-          ))}
+          {
+            myPosts.map((post, index) => (
+              <tr key={index} className="bg-gray-700 border-b border-gray-600">
+                <td className="px-4 py-3">{index + 1}</td>
+                <td className="px-4 py-3">{post.title.slice(0, 80)}</td>
+                <td className="px-4 py-3">{post.pay}</td>
+                <td className="px-4 py-3">
+                  <button
+                    className="hover:bg-[grey] rounded-sm p-2"
+                    onClick={() => onEdit(index)}
+                  >
+                    <img className="w-[20px]" src="icon/edit.png" alt="edit" />
+                  </button>
+                  <button
+                    className="ml-[20px] hover:bg-[red] rounded-sm p-2"
+                    onClick={() => onDelete(index)}
+                  >
+                    <img
+                      className="h-[20px] "
+                      src="icon/delete.png"
+                      alt="delete"
+                    />
+                  </button>
+                </td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
-      <EditModal
-        openModal={openEditModal}
-        onClose={() => setOpenEditModal(false)}
-        editPost={myPosts[selEdit]}
-      />
-      <DelModal
-        openModal={openDelModal}
-        onClose={() => setOpenDelModal(false)}
-        selDel={selDel}
-      />
+      {openEditModal ?
+        <EditModal
+          openModal={openEditModal}
+          onClose={() => setOpenEditModal(false)}
+          data={myPosts[selEdit]}
+          fetchPosts={getPost}
+        /> : null
+      }
+      {openDelModal ?
+        <DelModal
+          openModal={openDelModal}
+          onClose={() => setOpenDelModal(false)}
+          selDel={selDel}
+          afterDel={afterDelFunc}
+          data={myPosts[selDel].id}
+        /> : null
+      }
+
     </div>
   );
 }

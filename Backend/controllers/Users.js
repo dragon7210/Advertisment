@@ -21,7 +21,7 @@ export const Register = async (req, res) => {
     },
   });
   if (user.length > 0) {
-    return res.json({ msg: "Email exists already" });    
+    return res.json({ msg: "Email exists already" });
   }
   if (password !== confPassword)
     return res

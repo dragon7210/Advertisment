@@ -23,12 +23,12 @@ const Posts = db.define(
     pay: {
       type: DataTypes.INTEGER,
     },
-    created_at: {
+    createdAt: {
       type: "TIMESTAMP",
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       allowNull: false,
     },
-    updated_at: {
+    updatedAt: {
       type: "TIMESTAMP",
       defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       allowNull: false,

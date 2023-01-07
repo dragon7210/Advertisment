@@ -1,6 +1,9 @@
 import Modal from "react-modal";
 import Input from "../Input";
-import { useState } from "react";
+import { ToastError, ToastInfo, ToastSuccess } from "../../helpers/toast.helper";
+import { useEffect, useState } from "react";
+import { axiosPut } from "../../utils/httpUtil";
+import { baseUrl } from "../../constant";
 
 const customStyles = {
   content: {
@@ -14,8 +17,13 @@ const customStyles = {
   },
 };
 
-const EditModal = ({ openModal, onClose, editPost }) => {
-  const [postInfo, setPostInfo] = useState({});
+const EditModal = ({ openModal, onClose, data, fetchPosts }) => {
+  const [postInfo, setPostInfo] = useState({
+    post_id: 0,
+    type: 'free',
+    title: '',
+    content: '',
+  });
   const closeModal = () => {
     onClose();
   };
@@ -39,12 +47,46 @@ const EditModal = ({ openModal, onClose, editPost }) => {
       });
     }
   };
+  const handleUpdatePost = async () => {
+    if (postInfo.title === undefined || postInfo.title === "") {
+      ToastInfo("Title or content is empty");
+      return;
+    }
+    if (postInfo.content === undefined || postInfo.content === "") {
+      ToastInfo("Title or content is empty");
+      return;
+    }
+    try {
+      const res = await axiosPut(baseUrl, "/post", {
+        postInfo,
+      });
+      if (res.status === 200) {
+        ToastSuccess("success");
+        onClose();
+        // fetchPosts();
+      }
+    } catch (error) {
+      if (error.response) {
+        ToastError(error.response.data.msg);
+      } else {
+        ToastError("Server Error");
+      }
+    }
+  }
+  useEffect(() => {
+    setPostInfo({
+      post_id: data.id,
+      type: data.pay === 0 ? "free" : "paid",
+      title: data.title,
+      content: data.content,
+    })
+  }, [])
   return (
     <Modal isOpen={openModal} ariaHideApp={false} style={customStyles}>
       <select
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-2"
         onChange={select}
-        value={editPost && (editPost.pay === 0 ? "free" : "paid")}
+        value={postInfo.type}
       >
         <option value="free">Free</option>
         <option value="paid">Paid</option>
@@ -52,16 +94,16 @@ const EditModal = ({ openModal, onClose, editPost }) => {
       <Input
         placeholder="Title"
         onChange={(e) => onChange(e, "Title")}
-        value={editPost && editPost.title}
+        value={postInfo.title}
       />
       <textarea
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-[20px] h-24"
         onChange={(e) => onChange(e, "Content")}
-        value={editPost && editPost.content}
+        value={postInfo.content}
       />
 
       <div className="mt-5 flex justify-end">
-        <button className="bg-[green] px-4 py-2 rounded-lg w-[80px]">
+        <button className="bg-[green] px-4 py-2 rounded-lg w-[80px]" onClick={handleUpdatePost}>
           <p className="text-white">Save</p>
         </button>
         <button
