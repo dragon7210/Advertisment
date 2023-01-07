@@ -22,21 +22,13 @@ const Posts = db.define(
     },
     pay: {
       type: DataTypes.INTEGER,
-    },
-    createdAt: {
-      type: "TIMESTAMP",
-      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      allowNull: false,
-    },
-    updatedAt: {
-      type: "TIMESTAMP",
-      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      allowNull: false,
-      onUpdate: true,
-    },
+    }
   },
   {
     freezeTableName: true,
+    createdAt: true,
+    updatedAt: true,
+    deletedAt: true,
   }
 );
 

@@ -23,20 +23,11 @@ const Users = db.define(
     refresh_token: {
       type: DataTypes.TEXT,
     },
-    createdAt: {
-      type: "TIMESTAMP",
-      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      allowNull: false,
-    },
-    updatedAt: {
-      type: "TIMESTAMP",
-      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      allowNull: false,
-      onUpdate: true,
-    },
   },
   {
     freezeTableName: true,
+    createdAt:true,
+    updatedAt:true,
   }
 );
 
