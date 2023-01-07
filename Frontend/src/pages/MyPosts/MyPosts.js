@@ -6,7 +6,7 @@ import DelModal from "../../components/DelModal";
 
 export default function MyPosts() {
   const [myPosts, setMyPosts] = useState([]);
-  const [selEdit, setSelEdit] = useState(-1);
+  const [selEdit, setSelEdit] = useState(0);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selDel, setSelDel] = useState(-1);
   const [openDelModal, setOpenDelModal] = useState(false);
@@ -26,6 +26,14 @@ export default function MyPosts() {
     setSelDel(i);
     setOpenDelModal(true);
   };
+  const afterEditFunc = (data) => {
+    let temp = [...myPosts];
+    temp[selEdit].pay = data.type === 'free' ? 0 : 20;
+    temp[selEdit].title = data.title;
+    temp[selEdit].content = data.content;
+
+    setMyPosts(temp)
+  }
   const afterDelFunc = (selDel) => {
     let temp = [...myPosts];
     temp.splice(selDel, 1);
@@ -33,7 +41,7 @@ export default function MyPosts() {
   };
   return (
     <div className="pt-10">
-      {myPosts.length!=0 && (
+      {myPosts.length != 0 && (
         <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
           <thead>
             <tr className="text-left border-b border-gray-300">
@@ -77,6 +85,7 @@ export default function MyPosts() {
           openModal={openEditModal}
           onClose={() => setOpenEditModal(false)}
           data={myPosts[selEdit]}
+          afterEdit={afterEditFunc}
           fetchPosts={getPost}
         />
       ) : null}

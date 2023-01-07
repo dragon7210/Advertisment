@@ -20,7 +20,7 @@ const customStyles = {
   },
 };
 
-const EditModal = ({ openModal, onClose, data, fetchPosts }) => {
+const EditModal = ({ openModal, onClose, data, fetchPosts, afterEdit }) => {
   const [postInfo, setPostInfo] = useState({
     post_id: 0,
     type: 'free',
@@ -65,6 +65,7 @@ const EditModal = ({ openModal, onClose, data, fetchPosts }) => {
       });
       if (res.status === 200) {
         ToastSuccess("success");
+        afterEdit(postInfo)
         onClose();
         // fetchPosts();
       }
@@ -85,7 +86,7 @@ const EditModal = ({ openModal, onClose, data, fetchPosts }) => {
     })
   }, [])
   return (
-    <Modal className="w-[250px] sm:w-[400px] absolute  bg-white p-[10px]" isOpen={openModal} ariaHideApp={false} style={customStyles}>
+    <Modal className="w-[250px] sm:w-[400px] absolute  bg-white p-[20px] rounded-xl" isOpen={openModal} ariaHideApp={false} style={customStyles}>
       <select
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline mt-2"
         onChange={select}
