@@ -51,13 +51,13 @@ export default function MyPosts() {
                 <td className="px-4 py-3">{post.pay}</td>
                 <td className="px-4 py-3">
                   <button
-                    className="hover:bg-[grey] rounded-sm p-2"
+                    className="rounded-sm p-2"
                     onClick={() => onEdit(index)}
                   >
                     <img className="w-[20px]" src="icon/edit.png" alt="edit" />
                   </button>
                   <button
-                    className="ml-[20px] hover:bg-[red] rounded-sm p-2"
+                    className="ml-[20px] rounded-sm p-2"
                     onClick={() => onDelete(index)}
                   >
                     <img
