@@ -58,42 +58,6 @@ const Home = () => {
         </button>
       </div>
       <div className="w-[80%] mx-auto mt-[10vh] flex">
-<<<<<<< HEAD
-        {
-          postList.length === 0 ? (null) : (
-            <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
-              <thead>
-                <tr className="text-left border-b border-gray-300">
-                  <th className="px-4 py-3">No</th>
-                  <th className="px-4 py-3">Title</th>
-                  <th className="px-4 py-3">Content</th>
-                  <th className="px-4 py-3">Payment</th>
-                  <th className="px-4 py-3">createdAt</th>
-                  <th className="px-4 py-3">updatedAt</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  postList.map((item, ind) => {
-                    return (
-                      <tr key={ind} className="bg-gray-700 border-b border-gray-600">
-                        <td className="px-4 py-3">{ind + 1}</td>
-                        <td className="px-4 py-3">{item.title.slice(0, 40)}...</td>
-                        <td className="px-4 py-3">{item.content.slice(0, 120)}...</td>
-                        <td className="px-4 py-3 w-[15%]">
-                          <span className="badge badge-blue">{item.pay}</span>
-                        </td>
-                        <td className="px-4 py-3 w-[15%]">{item.createdAt}</td>
-                        <td className="px-4 py-3">{item.updatedAt}</td>
-                      </tr>
-                    )
-                  })
-                }
-              </tbody>
-            </table>
-          )
-        }
-=======
         {postList.length && (
           <table className="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-800 text-gray-200">
             <thead>
@@ -129,7 +93,6 @@ const Home = () => {
             </tbody>
           </table>
         )}
->>>>>>> a4ac0d56b5b17fa81ae1081f3dad8738323522ce
       </div>
     </div>
   );
