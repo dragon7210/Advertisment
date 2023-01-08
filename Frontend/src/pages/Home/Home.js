@@ -6,9 +6,12 @@ import { axiosGet } from "../../utils/httpUtil";
 import { ToastError } from "../../helpers/toast.helper";
 import { useDispatch, useSelector } from "react-redux";
 import { postData, setPostData } from "../../redux/post/postSlice";
+import ViewModal from "./ViewModal";
 
 const Home = () => {
   const [searchWord, setSearchWord] = useState("");
+  const [openViewModal, setOpenViewModal] = useState(false);
+  const [viewData, setViewData] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const postList = useSelector(postData);
@@ -33,6 +36,10 @@ const Home = () => {
       }
     }
   };
+  const handleClickDataRow = (data) => {
+    setOpenViewModal(true);
+    setViewData(data);
+  }
   useEffect(() => {
     let url = new URL(window.location.href);
     let query = url.searchParams.get("q");
@@ -57,9 +64,9 @@ const Home = () => {
           <p className="text-black font-bold hover:text-white">Search</p>
         </button>
       </div>
-      <div className="w-[80%] mx-auto mt-[10vh] flex">
+      <div className="w-[80%] mx-auto mt-[10vh] flex justify-center">
         {postList.length != 0 && (
-          <table className="rounded-t-lg m-1 sm:m-5 w-[90%] md:w-[500px] mx-auto bg-gray-800 text-gray-200 text-center">
+          <table className="rounded-t-lg m-1 sm:m-5 w-[90%] md:w-[70%] mx-auto bg-gray-800 text-gray-200 text-center">
             <thead>
               <tr className="border-b border-gray-300 text-center">
                 <th className="px-1 py-1 sm:px-4 sm:py-3">No</th>
@@ -76,9 +83,10 @@ const Home = () => {
                   <tr
                     key={ind}
                     className="bg-gray-700 border-b border-gray-600"
+                    onClick={() => handleClickDataRow(item)}
                   >
                     <td className="px-1 py-1 sm:px-4 sm:py-3">{ind + 1}</td>
-                    <td className="px-1 py-1 sm:px-4 sm:py-3">{item.title.slice(0, 40)}...</td>
+                    <td className="px-1 py-1 sm:px-4 sm:py-3">{item.title}</td>
                     {/* <td className="px-4 py-3">
                       {item.content.slice(0, 120)}...
                     </td> */}
@@ -95,6 +103,9 @@ const Home = () => {
         )
         }
       </div>
+      {
+        openViewModal ? (<ViewModal onClose={() => setOpenViewModal(false)} data={viewData} />) : null
+      }
     </div>
   );
 };

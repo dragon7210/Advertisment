@@ -89,7 +89,7 @@ export const postDelete = async (req, res) => {
 
 export const searchPost = async (req, res) => {
   let search = req.query['q'];
-  let query = `SELECT * FROM posts WHERE MATCH (title, content) AGAINST ( '${search}' IN NATURAL LANGUAGE MODE ) ORDER BY pay desc`;
+  let query = `SELECT * FROM posts WHERE MATCH (title, content) AGAINST ( '${search}' WITH QUERY EXPANSION ) ORDER BY pay desc, createdAt asc LIMIT 10`;
   try {
     Posts.sequelize.query(
       query,
